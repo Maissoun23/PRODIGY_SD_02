@@ -1,0 +1,35 @@
+Task2:
+#include <iostream>
+#include <cstdlib>  // Pour rand() et srand()
+#include <ctime>    // Pour time()
+
+using namespace std;
+
+int main() {
+    // Initialiser le générateur de nombres aléatoires
+    srand(static_cast<unsigned int>(time(0)));
+    int numberToGuess = rand() % 100 + 1;  // Générer un nombre entre 1 et 100
+    int userGuess;
+    int attempts = 0;
+
+    cout << "Bienvenue dans le jeu de devinette !" << endl;
+    cout << "J'ai généré un nombre entre 1 et 100." << endl;
+    cout << "Pouvez-vous deviner ce que c'est ?" << endl;
+
+    do {
+        cout << "Entrez votre devinette : ";
+        cin >> userGuess;
+        attempts++;
+
+        if (userGuess > numberToGuess) {
+            cout << "Trop haut ! Essayez encore." << endl;
+        } else if (userGuess < numberToGuess) {
+            cout << "Trop bas ! Essayez encore." << endl;
+        } else {
+            cout << "Félicitations ! Vous avez deviné le nombre." << endl;
+            cout << "Il vous a fallu " << attempts << " tentatives pour deviner le nombre." << endl;
+        }
+    } while (userGuess != numberToGuess);
+
+    return 0;
+}
